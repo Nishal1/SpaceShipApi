@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update spaceship status</title>
+</head>
+<body>
+    <h3>Update sapceship status</h3>
+    <form action="/spaceships/<%= spaceship._id %>?_method=PUT" method="POST">
+       
+        <label for="status">Spaceship status:</label>
+        <select name="spaceship[status]" required>
+            <option selected>select from below</option>
+            <option value="decommissioned">decommissioned</option>
+            <option value="maintenance">maintenance</option>
+            <option value="operational">operational</option>
+          </select>
+
+            
+        <button>Update spaceship status!</button>
+    </form>
+</body>
+</html>

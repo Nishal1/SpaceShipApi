@@ -19,3 +19,22 @@ module.exports.showSpaceship = async(req, res) => {
     const spaceship = await Spaceship.findById(req.params.id);
     res.render('spaceships/show', { spaceship });
 }
+
+module.exports.renderEditForm = async (req, res) => {
+    const { id } = req.params;
+    const spaceship = await Spaceship.findById(id);
+    res.render('spaceships/edit', { spaceship });
+};
+
+module.exports.updateSpaceship = async (req, res) => {
+    const spaceship = await Spaceship.findByIdAndUpdate(req.params.id, req.body.spaceship);
+    
+    await spaceship.save();
+    res.redirect(`/spaceships/${spaceship._id}`);
+};
+
+module.exports.deleteSpaceships = async (req, res) => {
+    const { id } = req.params;
+    await Spaceship.findByIdAndDelete(id);
+    res.redirect('/spaceships');
+}
