@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>location show</title>
+</head>
+<body>
+    <h3>Location <%= location.id %> : </h3>
+    <li>
+        <ul>CityName: <%= location.cityName %> </ul>
+        <ul>PlanetName: <%= location.planetName %> </ul>
+        <ul>Capacity: <%= location.capacity %> </ul>
+        <h4>Spaceships currently in here:</h4>
+        <% for(let s of location.spaceShips) { %> 
+            <li>
+                <ol>SpaceshipName: <%= s.name %> </ol>
+            </li>
+        <% } %> 
+    </li>
+
+    <form action="/location/<%= location._id%>?_method=DELETE" method="POST">
+        <button>Delete</button>
+    </form>
+
+</body>
+</html>

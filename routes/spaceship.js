@@ -18,6 +18,4 @@ router
 
 router.get('/:id/edit', catchAsync(spaceships.renderEditForm)); //renders the form to update the spaceship status
 
-
-
 module.exports = router;

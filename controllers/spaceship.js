@@ -12,7 +12,7 @@ module.exports.renderNewForm = (req, res) => {
 module.exports.createSpaceShip = async(req, res) => {
     const spaceship = new Spaceship(req.body.spaceship);
     await spaceship.save();
-    res.redirect('/spaceships')
+    res.redirect('/spaceships');
 }
 
 module.exports.showSpaceship = async(req, res) => {
