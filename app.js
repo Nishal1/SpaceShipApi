@@ -34,6 +34,9 @@ app.get('/', (req, res) => {
     res.send("home");
 });
 
+app.use('/spaceships', spaceshipRoutes);
+
+
 app.all('*', (req, res, next) => {
     next(new ExpressError('PAGE NOT FOUND', 404));
 });

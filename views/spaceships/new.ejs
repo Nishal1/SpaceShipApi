@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add spaceship</title>
+</head>
+<body>
+    <h3>Add sapceship</h3>
+    <form action="/spaceships" method="POST">
+       
+        <label for="name">Spaceship name:</label>
+        <input type="text" id="name" name="spaceship[name]" required>
+
+        <label for="model">Spaceship model:</label>
+        <input type="text" id="model" name="spaceship[model]" required>
+
+        <label for="status">Spaceship status:</label>
+        <select name="spaceship[status]" required>
+            <option selected>select from below</option>
+            <option value="decommissioned">decommissioned</option>
+            <option value="maintenance">maintenance</option>
+            <option value="operational">operational</option>
+          </select>
+
+            
+        <button>Add spaceship!</button>
+    </form>
+</body>
+</html>

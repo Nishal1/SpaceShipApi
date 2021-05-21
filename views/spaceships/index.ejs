@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index</title>
+</head>
+<body>
+    <% for(let s of spaceships) { %>
+        <h3>Spaceship <%= s.id %> : </h3>
+        <li>
+            <ul><%= s.name %> </ul>
+            <ul><%= s.model %> </ul>
+            <ul><%= s.status %> </ul>
+        </li>
+    <% } %>
+</body>
+</html>
