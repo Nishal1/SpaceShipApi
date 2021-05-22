@@ -39,7 +39,7 @@ app.use('/spaceships', spaceshipRoutes);
 
 app.use('/location', locationRoutes);
 
-app.use('/spaceships/:sID/locationToGo/:lID', travelRoutes);
+app.use('/spaceships/:sID/locationToGo/:lID/', travelRoutes);
 
 
 app.all('*', (req, res, next) => {

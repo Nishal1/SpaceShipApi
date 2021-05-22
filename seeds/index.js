@@ -26,7 +26,7 @@ const seedDBSpaceship = async () => {
         const spaceship = new Spaceship({
             name: `Spaceship ${i} flyer`,
             model: `modelx-${i}`,
-            status: `decommissioned`
+            status: `operational`
         });
         await spaceship.save();
     }

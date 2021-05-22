@@ -11,7 +11,7 @@ const spaceshipSchema = new Schema(
             enum: ['decommissioned', 'maintenance', 'operational'],
             required: true
         },
-        currentLocation: {  //array holds space ships in a particular location
+        currentLocation: {  // holds current location
             type: Schema.Types.ObjectId,
             ref: 'Location'
         }
