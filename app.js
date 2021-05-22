@@ -6,6 +6,7 @@ const ejsMate = require('ejs-mate');
 const methodOverride = require('method-override');
 const spaceshipRoutes = require('./routes/spaceship');
 const locationRoutes = require('./routes/location');
+const travelRoutes = require('./routes/travel');
 const dbUrl = 'mongodb://localhost:27017/spaceship';
 const ExpressError = require('./utils/ExpressError');
 
@@ -37,6 +38,8 @@ app.get('/', (req, res) => {
 app.use('/spaceships', spaceshipRoutes);
 
 app.use('/location', locationRoutes);
+
+app.use('/spaceships/:sID/locationToGo/:lID', travelRoutes);
 
 
 app.all('*', (req, res, next) => {

@@ -1,7 +1,9 @@
 const Location = require('../models/location');
 
 module.exports.index = async (req, res) => {
-    const locations = await Location.find({});
+    const locations = await Location.find({}).populate({
+        path: 'spaceShips'
+    });
     res.render('location/index', { locations });
 }
 
@@ -22,6 +24,8 @@ module.exports.deleteLocation = async (req, res) => {
 }
 
 module.exports.showLocation = async(req, res) => {
-    const location = await Location.findById(req.params.id);
+    const location = await Location.findById(req.params.id).populate({
+        path: 'spaceShips'
+    });
     res.render('location/show', { location });
 }

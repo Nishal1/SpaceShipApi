@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Location = require('./location');
 const Schema = mongoose.Schema;
 
 const spaceshipSchema = new Schema(
@@ -9,6 +10,10 @@ const spaceshipSchema = new Schema(
             type: String,
             enum: ['decommissioned', 'maintenance', 'operational'],
             required: true
+        },
+        currentLocation: {  //array holds space ships in a particular location
+            type: Schema.Types.ObjectId,
+            ref: 'Location'
         }
     }
 );

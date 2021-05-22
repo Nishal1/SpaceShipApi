@@ -11,6 +11,7 @@
             <ul><%= spaceship.name %> </ul>
             <ul><%= spaceship.model %> </ul>
             <ul><%= spaceship.status %> </ul>
+            <ul>Current Location: <%= spaceship.currentLocation %> </ul>
         </li>
 
         <form action="/spaceships/<%= spaceship._id%>?_method=DELETE" method="POST">
