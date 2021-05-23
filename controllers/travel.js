@@ -3,6 +3,7 @@ const Location = require('../models/location');
 
 
 module.exports.getInfo = async(req, res) => {
+    //an extra route
     const spaceship = await Spaceship.findById(req.params.sID);
     res.render('spaceships/show', { spaceship });
 }
@@ -24,12 +25,12 @@ module.exports.travel = async(req, res) => {
             for(let i = 0; i < location.length; i++) {
                 if(location[i].equals(spaceship.currentLocation)) {
                     //insertion not possible as spaceship aldready in this location
-                    //redirect to main index as temporary error handling
                     return res.send('Travel Not possible :(');
                 }
             }
 
             if(spaceship.currentLocation) {
+                //remove spaceship from it's current location
                 let oldLocation = await Location.findById(spaceship.currentLocation).populate({
                     path: 'spaceShips'
                 });
@@ -40,13 +41,13 @@ module.exports.travel = async(req, res) => {
                         x.push(oldLocation.spaceShips[i]);
                     }
                 }
-                // let x = oldLocation.spaceShips.filter(item => item._id !== spaceship._id);
+                
                 oldLocation.spaceShips = x;
                 let oldloc = await Location.findByIdAndUpdate(spaceship.currentLocation, oldLocation);
                 console.log(oldloc);
                 await oldloc.save();
             }
-            //at this stage insertion is possible
+            //at this stage insertion is possible and spaceship is ready to arrive at new destination!
             spaceship.currentLocation = location; //set to new location
             location.spaceShips.push(spaceship);    //add spaceship to new location
 
@@ -57,7 +58,6 @@ module.exports.travel = async(req, res) => {
         
         } else {
             //travelling not possible as travel conditions are not met
-            //redirect to main index as temporary error handling
             return res.send('Travel Not possible :(');
         }
     } catch(e) {

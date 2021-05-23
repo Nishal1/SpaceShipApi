@@ -31,7 +31,6 @@ app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
-    //res.render('home', { page: 'home' });
     res.send("home");
 });
 
