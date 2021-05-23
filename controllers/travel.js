@@ -10,7 +10,9 @@ module.exports.getInfo = async(req, res) => {
 module.exports.travel = async(req, res) => {
     try {
         const spaceship = await Spaceship.findById(req.params.sID);
-        const location = await Location.findById(req.params.lID);
+        const location = await Location.findById(req.params.lID).populate({
+            path: 'spaceShips'
+        });
     
         if(!location || !spaceship) {
             return res.send('Undefined credentials: Travel Not possible :(');
@@ -28,19 +30,21 @@ module.exports.travel = async(req, res) => {
             }
 
             if(spaceship.currentLocation) {
-                const oldLocation = await Location.findById(spaceship.currentLocation);
-                // let i = 0;
-                // for(; i < oldLocation.spaceShips.length; i++) {
-                //     if(oldLocation.spaceShips[i].equals(spaceship)) {
-                //         break;
-                //     }
-                // }
-                // oldLocation.spaceShips = oldLocation.spaceShips.slice(0, i).concat(oldLocation.spaceShips.slice(i + 1, oldLocation.spaceShips.length))
-                // console.log(oldLocation);
-                let x = oldLocation.spaceShips.filter(item => item._id !== spaceship._id);
+                let oldLocation = await Location.findById(spaceship.currentLocation).populate({
+                    path: 'spaceShips'
+                });
+            
+                let x = [];
+                for(let i = 0; i < oldLocation.spaceShips.length; i++) {
+                    if(!oldLocation.spaceShips[i].equals(spaceship)) {
+                        x.push(oldLocation.spaceShips[i]);
+                    }
+                }
+                // let x = oldLocation.spaceShips.filter(item => item._id !== spaceship._id);
                 oldLocation.spaceShips = x;
-                console.log(oldLocation);
-                oldLocation.save();
+                let oldloc = await Location.findByIdAndUpdate(spaceship.currentLocation, oldLocation);
+                console.log(oldloc);
+                await oldloc.save();
             }
             //at this stage insertion is possible
             spaceship.currentLocation = location; //set to new location
@@ -49,7 +53,7 @@ module.exports.travel = async(req, res) => {
             await location.save();
             await spaceship.save();
             
-            return res.send(location);
+            return res.send("successful Travel");
         
         } else {
             //travelling not possible as travel conditions are not met
