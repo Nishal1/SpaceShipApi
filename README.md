@@ -7,7 +7,7 @@ An API to manage logistics of a shipping company.
 1. Clone the repo
 2. run 'npm install'
 
-# Run app
+# Run instructions
 
 You can run this application on localhost.
 
