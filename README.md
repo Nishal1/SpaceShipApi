@@ -1,4 +1,4 @@
-# stombleSpaceShipApi
+# SpaceShipApi
 
 An API to manage logistics of a shipping company.
 
